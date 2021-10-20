@@ -12,6 +12,7 @@ public class UI : MonoBehaviour
     // inventory data
     public GameObject Inventory;
     public bool InventoryActive;
+    public Image[] Slots;
 
     public void Update()
     {
@@ -38,5 +39,23 @@ public class UI : MonoBehaviour
     {
         InventoryActive = !InventoryActive;
         Inventory.SetActive(InventoryActive);
+    }
+
+    public void UpdateInventory(Collectible[] items)
+    {
+        if (items.Length != 5)
+        {
+            Debug.LogError("Inventory Error: Not enough items passed to display in slots");
+        }
+        else
+        {
+            for (int i = 0; i < items.Length && i < Slots.Length; i++)
+            {
+                if (items[i] != null)
+                {
+                    Slots[i].sprite = items[i].Preview;
+                }
+            }
+        }
     }
 }
