@@ -45,7 +45,7 @@ public class PlayerBehavior : MonoBehaviour
                 // interacting with an object in the scene (like a door)
                 else if (hit.collider.tag == "Interactable")
                 {
-                    Interactable interactable = hit.collider.gameObject.GetComponent<Interactable>();
+                    Interactable interactable = hit.collider.gameObject.GetComponentInParent<Interactable>();
 
                     bool hasKeyItem = false;
                     foreach (Collectible c in Inventory)

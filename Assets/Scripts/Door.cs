@@ -6,6 +6,8 @@ public class Door : MonoBehaviour, Interactable
 {
     public Collectible KeyItem;
 
+    public bool Open;
+
     // important for if the player dies, will be used to reset the level
     public Vector3 InitialPosition;
     public Quaternion InitialRotation;
@@ -23,7 +25,16 @@ public class Door : MonoBehaviour, Interactable
 
     public void Interact()
     {
-        transform.Rotate(new Vector3(0, 90, 0));
+        if (!Open)
+        {
+            transform.Rotate(new Vector3(0, 90, 0));
+            Open = true;
+        }
+        else
+        {
+            transform.Rotate(new Vector3(0, -90, 0));
+            Open = false;
+        }
     }
 
     public void Reset()
