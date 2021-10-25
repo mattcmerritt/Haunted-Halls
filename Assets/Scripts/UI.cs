@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UI : MonoBehaviour
 {
@@ -13,6 +14,16 @@ public class UI : MonoBehaviour
     public GameObject Inventory;
     public bool InventoryActive;
     public Image[] Slots;
+
+    // battery data
+    public TMP_Text BatteryMeter;
+
+    // death screen
+    public GameObject DeathScreen;
+    public ObjectManager ObjectManager;
+
+    // win screen
+    public GameObject WinScreen;
 
     public void Update()
     {
@@ -55,7 +66,49 @@ public class UI : MonoBehaviour
                 {
                     Slots[i].sprite = items[i].Preview;
                 }
+                else
+                {
+                    Slots[i].sprite = null;
+                }
             }
         }
+    }
+
+    public void UpdateBatteryLevel(float battery)
+    {
+        BatteryMeter.SetText("Remaining Battery: " + Mathf.RoundToInt(battery) + "%");
+    }
+
+    public void DisplayDeathScreen()
+    {
+        // clear all old data
+        PlayerLost();
+        UpdateInventory(new Collectible[5]);
+        InventoryActive = false;
+        Inventory.SetActive(false);
+
+        // show death screen
+        DeathScreen.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void ResetGame()
+    {
+        ObjectManager.ResetAllObjects();
+        DeathScreen.SetActive(false);
+        WinScreen.SetActive(false);
+    }
+
+    public void DisplayWinScreen()
+    {
+        // clear all old data
+        PlayerLost();
+        UpdateInventory(new Collectible[5]);
+        InventoryActive = false;
+        Inventory.SetActive(false);
+
+        // show death screen
+        WinScreen.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
     }
 }

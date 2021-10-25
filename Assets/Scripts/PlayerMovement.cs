@@ -79,4 +79,19 @@ public class PlayerMovement : MonoBehaviour
         CameraTransform.localRotation = Quaternion.Euler(CameraRotation, 0f, 0f);
         transform.rotation = Quaternion.Euler(transform.eulerAngles + new Vector3(0f, mouseX, 0f));
     }
+
+    public void Reset()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+
+        // object cannot move with character controller active
+        CC.enabled = false;
+
+        transform.position = StartLocation;
+        transform.rotation = StartAngle;
+        CameraTransform.localRotation = StartCameraAngle;
+
+        // reenable character controller
+        CC.enabled = true;
+    }
 }
