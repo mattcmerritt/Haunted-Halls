@@ -14,6 +14,9 @@ public class PlayerBehavior : MonoBehaviour
     public float RemainingBattery;
     public float BatteryUseRate;
 
+    [Range(1, 20)]
+    public float GrabDistance;
+
     private void Start()
     {
         Inventory = new Collectible[5];
@@ -27,7 +30,7 @@ public class PlayerBehavior : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, CameraTransform.forward, out hit, 3f))
+            if (Physics.Raycast(transform.position, CameraTransform.forward, out hit, GrabDistance))
             {
                 // picking up an item
                 if (hit.collider.tag == "Collectible")
