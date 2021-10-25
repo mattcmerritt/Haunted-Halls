@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     public UI UI;
 
     public GameObject NavigationMap;
+    public float MoveSpeed;
 
     public void Awake()
     {
@@ -18,6 +19,7 @@ public class Enemy : MonoBehaviour
 
     public void Update()
     {
+        // player detection
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, VisionRange))
         {
@@ -41,7 +43,10 @@ public class Enemy : MonoBehaviour
         if (activeNode != null)
         {
             Vector3 direction = Vector3.Normalize(activeNode.gameObject.transform.position - transform.position);
-            Debug.DrawLine(transform.position, transform.position + (direction * 10f), Color.magenta);
+            //Debug.DrawRay(transform.position, direction, Color.magenta);
+            transform.position += direction * MoveSpeed * Time.deltaTime;
+            // rotate to face node
+            transform.eulerAngles = new Vector3(0f, Mathf.Rad2Deg * Mathf.Atan2(direction.x, direction.z), 0f);
         }
     }
 
