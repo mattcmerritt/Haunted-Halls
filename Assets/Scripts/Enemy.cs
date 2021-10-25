@@ -16,9 +16,17 @@ public class Enemy : MonoBehaviour
 
     public void Update()
     {
-        if (Physics.Raycast(transform.position, transform.forward, VisionRange))
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, VisionRange))
         {
-            UI.PlayerDetected();
+            if (hit.collider.tag == "Player")
+            {
+                UI.PlayerDetected();
+            }
+            else
+            {
+                UI.PlayerLost();
+            }
         }
         else
         {
