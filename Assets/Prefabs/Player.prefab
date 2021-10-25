@@ -241,3 +241,5 @@ MonoBehaviour:
   UI: {fileID: 0}
   Inventory: []
   InventoryIndex: 0
+  Enemy: {fileID: 0}
+  RemainingBattery: 100

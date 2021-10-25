@@ -10,10 +10,14 @@ public class PlayerBehavior : MonoBehaviour
     public Collectible[] Inventory;
     public int InventoryIndex; // this will need to be the slot that items should be added at
 
+    public Enemy Enemy;
+    public float RemainingBattery;
+
     private void Start()
     {
         Inventory = new Collectible[5];
         UI = FindObjectOfType<UI>();
+        Enemy = FindObjectOfType<Enemy>();
     }
 
     private void Update()
@@ -62,6 +66,24 @@ public class PlayerBehavior : MonoBehaviour
                     }
                 }
             }
+        }
+
+        if (Input.GetKey(KeyCode.Q))
+        {
+            if (RemainingBattery > 0)
+            {
+                Enemy.EnableVisionCone();
+                RemainingBattery -= Time.deltaTime;
+            }
+            else
+            {
+                Enemy.DisableVisionCone();
+            }
+            
+        }
+        else
+        {
+            Enemy.DisableVisionCone();
         }
     }
 }
