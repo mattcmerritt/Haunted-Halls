@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UI : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class UI : MonoBehaviour
     public GameObject Inventory;
     public bool InventoryActive;
     public Image[] Slots;
+
+    // battery data
+    public TMP_Text BatteryMeter;
 
     public void Update()
     {
@@ -55,7 +59,16 @@ public class UI : MonoBehaviour
                 {
                     Slots[i].sprite = items[i].Preview;
                 }
+                else
+                {
+                    Slots[i].sprite = null;
+                }
             }
         }
+    }
+
+    public void UpdateBatteryLevel(float battery)
+    {
+        BatteryMeter.SetText("Remaining Battery: " + Mathf.RoundToInt(battery) + "%");
     }
 }

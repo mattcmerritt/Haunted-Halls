@@ -338,6 +338,8 @@ MonoBehaviour:
   MoveSpeed: 3
   PlayerTransform: {fileID: 0}
   VisionCone: {fileID: 4707093183791671247}
+  MaxDetectionTime: 3
+  DetectionDuration: 0
 --- !u!1 &7413092739828993184
 GameObject:
   m_ObjectHideFlags: 0

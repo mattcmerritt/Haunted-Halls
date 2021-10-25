@@ -512,7 +512,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7547098624238375907, guid: e9e3ed3499a89464cb1e20f083dfd30a, type: 3}
       propertyPath: m_Name
-      value: Collectible (2)
+      value: Battery
       objectReference: {fileID: 0}
     - target: {fileID: 7547098624238375911, guid: e9e3ed3499a89464cb1e20f083dfd30a, type: 3}
       propertyPath: m_RootOrder

@@ -243,3 +243,4 @@ MonoBehaviour:
   InventoryIndex: 0
   Enemy: {fileID: 0}
   RemainingBattery: 100
+  BatteryUseRate: 10

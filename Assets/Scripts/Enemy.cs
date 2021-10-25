@@ -16,6 +16,9 @@ public class Enemy : MonoBehaviour
     public Transform PlayerTransform;
     public GameObject VisionCone;
 
+    public float MaxDetectionTime;
+    public float DetectionDuration;
+
     public void Awake()
     {
         UI = FindObjectOfType<UI>();
@@ -29,28 +32,35 @@ public class Enemy : MonoBehaviour
         Vector3 directionToPlayer = (PlayerTransform.position - transform.position).normalized;
         if (Vector3.Angle(transform.forward, directionToPlayer) < FOV / 2)
         {
-            // float distanceToPlayer = Vector3.Distance(transform.position, PlayerTransform.position);
-
             RaycastHit hit;
             if (Physics.Raycast(transform.position, directionToPlayer, out hit, VisionRange))
             {
                 if (hit.collider.tag == "Player")
                 {
                     UI.PlayerDetected();
+                    DetectionDuration += Time.deltaTime;
+
+                    if (MaxDetectionTime < DetectionDuration)
+                    {
+                        Debug.Log("You are dead!");
+                    }
                 }
                 else
                 {
                     UI.PlayerLost();
+                    DetectionDuration = 0f;
                 }
             }
             else
             {
                 UI.PlayerLost();
+                DetectionDuration = 0f;
             }
         }
         else
         {
             UI.PlayerLost();
+            DetectionDuration = 0f;
         }
 
         // moving between nodes
