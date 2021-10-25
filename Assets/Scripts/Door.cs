@@ -41,5 +41,6 @@ public class Door : MonoBehaviour, Interactable
     {
         transform.position = InitialPosition;
         transform.rotation = InitialRotation;
+        Open = false;
     }
 }

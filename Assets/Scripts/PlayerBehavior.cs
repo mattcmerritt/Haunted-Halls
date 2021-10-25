@@ -126,4 +126,11 @@ public class PlayerBehavior : MonoBehaviour
             UI.UpdateBatteryLevel(RemainingBattery);
         }
     }
+
+    public void Reset()
+    {
+        RemainingBattery = 100;
+        Inventory = new Collectible[5];
+        InventoryIndex = 0;
+    }
 }

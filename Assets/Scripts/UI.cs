@@ -18,6 +18,10 @@ public class UI : MonoBehaviour
     // battery data
     public TMP_Text BatteryMeter;
 
+    // death screen
+    public GameObject DeathScreen;
+    public ObjectManager ObjectManager;
+
     public void Update()
     {
         WarningHUD.SetActive(Detected);
@@ -70,5 +74,24 @@ public class UI : MonoBehaviour
     public void UpdateBatteryLevel(float battery)
     {
         BatteryMeter.SetText("Remaining Battery: " + Mathf.RoundToInt(battery) + "%");
+    }
+
+    public void DisplayDeathScreen()
+    {
+        // clear all old data
+        PlayerLost();
+        UpdateInventory(new Collectible[5]);
+        InventoryActive = false;
+        Inventory.SetActive(false);
+
+        // show death screen
+        DeathScreen.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void ResetGame()
+    {
+        ObjectManager.ResetAllObjects();
+        DeathScreen.SetActive(false);
     }
 }

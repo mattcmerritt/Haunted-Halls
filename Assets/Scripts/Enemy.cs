@@ -42,7 +42,8 @@ public class Enemy : MonoBehaviour
 
                     if (MaxDetectionTime < DetectionDuration)
                     {
-                        Debug.Log("You are dead!");
+                        UI.DisplayDeathScreen();
+                        DetectionDuration = 0;
                     }
                 }
                 else
