@@ -22,6 +22,9 @@ public class UI : MonoBehaviour
     public GameObject DeathScreen;
     public ObjectManager ObjectManager;
 
+    // win screen
+    public GameObject WinScreen;
+
     public void Update()
     {
         WarningHUD.SetActive(Detected);
@@ -93,5 +96,19 @@ public class UI : MonoBehaviour
     {
         ObjectManager.ResetAllObjects();
         DeathScreen.SetActive(false);
+        WinScreen.SetActive(false);
+    }
+
+    public void DisplayWinScreen()
+    {
+        // clear all old data
+        PlayerLost();
+        UpdateInventory(new Collectible[5]);
+        InventoryActive = false;
+        Inventory.SetActive(false);
+
+        // show death screen
+        WinScreen.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
     }
 }
