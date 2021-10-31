@@ -339,8 +339,12 @@ MonoBehaviour:
   MoveSpeed: 7
   PlayerTransform: {fileID: 0}
   VisionCone: {fileID: 4707093183791671247}
-  MaxDetectionTime: 0.5
+  MaxDetectionTime: 1
   DetectionDuration: 0
+  SoundManager: {fileID: 0}
+  SoundDetectionRadius: 20
+  Chasing: 0
+  ChaseTarget: {x: 0, y: 0, z: 0}
 --- !u!114 &3826179801385749085
 MonoBehaviour:
   m_ObjectHideFlags: 0

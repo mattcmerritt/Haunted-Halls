@@ -19,9 +19,17 @@ public class Enemy : MonoBehaviour
     public float MaxDetectionTime;
     public float DetectionDuration;
 
+    public SoundManager SoundManager;
+    public float SoundDetectionRadius;
+
+    public bool Chasing;
+    public Vector3 ChaseTarget;
+
     public void Awake()
     {
         UI = FindObjectOfType<UI>();
+
+        SoundManager.OnSoundMade += HearSound;
     }
 
     public void Update()
@@ -64,20 +72,63 @@ public class Enemy : MonoBehaviour
             DetectionDuration = 0f;
         }
 
-        // moving between nodes
-        PathingNode activeNode = NavigationMap.GetComponentInChildren<PathingNode>();
-
-        if (activeNode != null)
+        if (!Chasing)
         {
-            // direction to move in as a normalized vector
-            Vector3 direction = Vector3.Normalize(activeNode.gameObject.transform.position - transform.position);
+            // moving between nodes
+            PathingNode activeNode = NavigationMap.GetComponentInChildren<PathingNode>();
 
-            // move in direction
-            transform.position += direction * MoveSpeed * Time.deltaTime;
+            if (activeNode != null)
+            {
+                // direction to move in as a normalized vector
+                Vector3 direction = Vector3.Normalize(activeNode.gameObject.transform.position - transform.position);
 
-            // rotate to face node
-            transform.eulerAngles = new Vector3(0f, Mathf.Rad2Deg * Mathf.Atan2(direction.x, direction.z), 0f);
+                // move in direction
+                transform.position += direction * MoveSpeed * Time.deltaTime;
+
+                // rotate to face node
+                transform.eulerAngles = new Vector3(0f, Mathf.Rad2Deg * Mathf.Atan2(direction.x, direction.z), 0f);
+            }
         }
+        else
+        {
+            Vector3 distanceToPlayer = PlayerTransform.position - transform.position;
+
+            // check if player is still in range
+            if (distanceToPlayer.magnitude <= SoundDetectionRadius) {
+                RaycastHit playerHit;
+                if (Physics.Raycast(transform.position, directionToPlayer, out playerHit))
+                {
+                    // check that line of sight was not broken
+                    if (playerHit.collider.tag == "Player")
+                    {
+                        // direction to target as a normalized vector
+                        Vector3 direction = Vector3.Normalize(ChaseTarget - transform.position);
+
+                        // move in direction
+                        transform.position += direction * MoveSpeed * Time.deltaTime;
+
+                        // rotate to face node
+                        transform.eulerAngles = new Vector3(0f, Mathf.Rad2Deg * Mathf.Atan2(direction.x, direction.z), 0f);
+                    }
+                    else
+                    {
+                        Chasing = false;
+                        Debug.Log("sight broken!");
+                    }
+                }
+                else
+                {
+                    Chasing = false;
+                    Debug.LogError("raycast missed");
+                }
+            }
+            else
+            {
+                Chasing = false;
+                Debug.Log("evaded");
+            }
+        }
+        
     }
 
     public void EnableVisionCone()
@@ -88,5 +139,19 @@ public class Enemy : MonoBehaviour
     public void DisableVisionCone()
     {
         VisionCone.SetActive(false);
+    }
+
+    private void HearSound(object sender, SoundEventArgs e)
+    {
+        Vector3 soundLocation = e.Location;
+
+        Vector3 distanceToPlayer = transform.position - soundLocation;
+        
+        if (distanceToPlayer.magnitude <= SoundDetectionRadius)
+        {
+            Debug.Log("Chasing!");
+            Chasing = true;
+            ChaseTarget = soundLocation;
+        }
     }
 }

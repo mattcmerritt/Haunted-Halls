@@ -9,7 +9,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip FootstepClip, LandingClip;
     public Transform PlayerTransform;
 
-    public event EventHandler OnSoundMade;
+    public event EventHandler<SoundEventArgs> OnSoundMade;
 
     public void PlayFootstep()
     {
