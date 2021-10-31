@@ -17,6 +17,7 @@ public class UI : MonoBehaviour
 
     // battery data
     public TMP_Text BatteryMeter;
+    public GameObject GogglesOverlay;
 
     // death screen
     public GameObject DeathScreen;
@@ -24,6 +25,9 @@ public class UI : MonoBehaviour
 
     // win screen
     public GameObject WinScreen;
+
+    // crosshair
+    public GameObject Crosshair;
 
     public void Update()
     {
@@ -86,6 +90,8 @@ public class UI : MonoBehaviour
         UpdateInventory(new Collectible[5]);
         InventoryActive = false;
         Inventory.SetActive(false);
+        GogglesOverlay.SetActive(false);
+        Crosshair.SetActive(false);
 
         // show death screen
         DeathScreen.SetActive(true);
@@ -97,6 +103,7 @@ public class UI : MonoBehaviour
         ObjectManager.ResetAllObjects();
         DeathScreen.SetActive(false);
         WinScreen.SetActive(false);
+        Crosshair.SetActive(true);
     }
 
     public void DisplayWinScreen()
@@ -106,9 +113,21 @@ public class UI : MonoBehaviour
         UpdateInventory(new Collectible[5]);
         InventoryActive = false;
         Inventory.SetActive(false);
+        GogglesOverlay.SetActive(false);
+        Crosshair.SetActive(false);
 
-        // show death screen
+        // show win screen
         WinScreen.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void DisplayGoggles()
+    {
+        GogglesOverlay.SetActive(true);
+    }
+
+    public void HideGoggles()
+    {
+        GogglesOverlay.SetActive(false);
     }
 }

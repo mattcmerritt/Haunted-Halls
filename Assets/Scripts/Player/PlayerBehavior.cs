@@ -75,6 +75,7 @@ public class PlayerBehavior : MonoBehaviour
         // ghost vision goggles
         if (Input.GetKey(KeyCode.Q))
         {
+            UI.DisplayGoggles();
             // if battery left, turn on the light
             if (RemainingBattery > 0)
             {
@@ -127,6 +128,7 @@ public class PlayerBehavior : MonoBehaviour
         {
             Enemy.DisableVisionCone();
             UI.UpdateBatteryLevel(RemainingBattery);
+            UI.HideGoggles();
         }
     }
 

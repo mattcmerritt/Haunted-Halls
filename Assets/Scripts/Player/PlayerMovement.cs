@@ -48,9 +48,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        float rawForwardInput = Input.GetAxisRaw("Vertical");
+        float rawRightInput = Input.GetAxisRaw("Horizontal");
+
+        // normalizing input (so that putting in forward and right is not faster)
+        Vector3 normalizedInput = new Vector3(rawForwardInput, 0f, rawRightInput).normalized;
+
         // translational movement
-        float forwardInput = Input.GetAxis("Vertical") * MoveSpeed * Time.deltaTime;
-        float rightInput = Input.GetAxis("Horizontal") * MoveSpeed * Time.deltaTime;
+        float forwardInput = normalizedInput.x * MoveSpeed * Time.deltaTime;
+        float rightInput = normalizedInput.z * MoveSpeed * Time.deltaTime;
 
         Vector3 movement = (forwardInput * transform.forward) + (rightInput * transform.right);
 

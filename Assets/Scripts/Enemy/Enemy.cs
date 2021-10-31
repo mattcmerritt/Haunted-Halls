@@ -48,6 +48,9 @@ public class Enemy : MonoBehaviour
                     UI.PlayerDetected();
                     DetectionDuration += Time.deltaTime;
 
+                    Chasing = true;
+                    ChaseTarget = PlayerTransform.position;
+
                     if (MaxDetectionTime < DetectionDuration)
                     {
                         UI.DisplayDeathScreen();
@@ -113,19 +116,16 @@ public class Enemy : MonoBehaviour
                     else
                     {
                         Chasing = false;
-                        Debug.Log("sight broken!");
                     }
                 }
                 else
                 {
                     Chasing = false;
-                    Debug.LogError("raycast missed");
                 }
             }
             else
             {
                 Chasing = false;
-                Debug.Log("evaded");
             }
         }
         
