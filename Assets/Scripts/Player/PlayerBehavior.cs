@@ -17,6 +17,8 @@ public class PlayerBehavior : MonoBehaviour
     [Range(1, 20)]
     public float GrabDistance;
 
+    public bool HasGoggles;
+
     private void Start()
     {
         Inventory = new Collectible[5];
@@ -47,6 +49,11 @@ public class PlayerBehavior : MonoBehaviour
 
                         hit.collider.gameObject.SetActive(false);
 
+                        if (hit.collider.name.Contains("goggles"))
+                        {
+                            HasGoggles = true;
+                        }
+
                         UI.UpdateInventory(Inventory);
                     }
                 }
@@ -73,7 +80,7 @@ public class PlayerBehavior : MonoBehaviour
         }
 
         // ghost vision goggles
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKey(KeyCode.Q) && HasGoggles)
         {
             UI.DisplayGoggles();
             // if battery left, turn on the light
@@ -137,5 +144,6 @@ public class PlayerBehavior : MonoBehaviour
         RemainingBattery = 100;
         Inventory = new Collectible[5];
         InventoryIndex = 0;
+        HasGoggles = false;
     }
 }
