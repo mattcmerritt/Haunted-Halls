@@ -18,6 +18,7 @@ public class PlayerBehavior : MonoBehaviour
     public float GrabDistance;
 
     public bool HasGoggles;
+    public HelpOverlay HelpOverlay;
 
     private void Start()
     {
@@ -48,10 +49,12 @@ public class PlayerBehavior : MonoBehaviour
                         InventoryIndex++;
 
                         hit.collider.gameObject.SetActive(false);
+                        HelpOverlay.ToggleInventoryPrompt();
 
                         if (hit.collider.name.Contains("goggles"))
                         {
                             HasGoggles = true;
+                            HelpOverlay.ToggleGogglesPrompt();
                         }
 
                         UI.UpdateInventory(Inventory);
@@ -136,6 +139,28 @@ public class PlayerBehavior : MonoBehaviour
             Enemy.DisableVisionCone();
             UI.UpdateBatteryLevel(RemainingBattery);
             UI.HideGoggles();
+        }
+
+        // checking if the hints for interact should be displayed
+        RaycastHit itemHit;
+        if (Physics.Raycast(transform.position, CameraTransform.forward, out itemHit, GrabDistance))
+        {
+            if (itemHit.collider.tag == "Collectible")
+            {
+                HelpOverlay.ShowInteractPrompt("Collect");
+            }
+            else if (itemHit.collider.tag == "Interactable")
+            {
+                HelpOverlay.ShowInteractPrompt("Interact");
+            }
+            else
+            {
+                HelpOverlay.HideInteractPrompt();
+            }
+        }
+        else
+        {
+            HelpOverlay.HideInteractPrompt();
         }
     }
 
