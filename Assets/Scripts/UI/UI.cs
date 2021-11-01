@@ -48,6 +48,10 @@ public class UI : MonoBehaviour
                 ToggleInventory();
             }
         }
+        else
+        {
+            WarningHUD.SetActive(false);
+        }
     }
 
     public void PlayerDetected()
