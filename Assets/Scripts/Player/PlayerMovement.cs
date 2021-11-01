@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     public float MoveSpeed;
-    public float Sensitivity;
+    public static float Sensitivity = 200;
     public float Gravity = -9.8f;
     public float JumpSpeed;
     public float VerticalSpeed;
