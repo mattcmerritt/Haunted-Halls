@@ -3123,6 +3123,7 @@ MonoBehaviour:
   Player: {fileID: 0}
   BackupCamera: {fileID: 141805076599601017}
   Playing: 1
+  HelpOverlay: {fileID: 4068669240033018371}
 --- !u!1 &4704297745205514278
 GameObject:
   m_ObjectHideFlags: 0

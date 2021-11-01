@@ -38,6 +38,9 @@ public class UI : MonoBehaviour
 
     public bool Playing = true;
 
+    // help overlay
+    public GameObject HelpOverlay;
+
     public void Update()
     {
         if (Playing)
@@ -110,6 +113,7 @@ public class UI : MonoBehaviour
         Crosshair.SetActive(false);
         BackupCamera.SetActive(true);
         Player.SetActive(false);
+        HelpOverlay.SetActive(false);
 
         // show death screen
         DeathScreen.SetActive(true);
@@ -124,7 +128,8 @@ public class UI : MonoBehaviour
         ObjectManager.ResetAllObjects();
         DeathScreen.SetActive(false);
         WinScreen.SetActive(false);
-        Crosshair.SetActive(true); 
+        Crosshair.SetActive(true);
+        HelpOverlay.SetActive(true);
     }
 
     public void DisplayWinScreen()
@@ -139,6 +144,7 @@ public class UI : MonoBehaviour
         Crosshair.SetActive(false);
         BackupCamera.SetActive(true);
         Player.SetActive(false);
+        HelpOverlay.SetActive(false);
 
         // show win screen
         WinScreen.SetActive(true);
