@@ -41,6 +41,9 @@ public class UI : MonoBehaviour
     // help overlay
     public GameObject HelpOverlay;
 
+    // combination
+    public GameObject CombinationOverlay;
+
     public void Update()
     {
         if (Playing)
@@ -114,6 +117,7 @@ public class UI : MonoBehaviour
         BackupCamera.SetActive(true);
         Player.SetActive(false);
         HelpOverlay.SetActive(false);
+        CombinationOverlay.SetActive(false);
 
         // show death screen
         DeathScreen.SetActive(true);
@@ -130,6 +134,7 @@ public class UI : MonoBehaviour
         WinScreen.SetActive(false);
         Crosshair.SetActive(true);
         HelpOverlay.SetActive(true);
+        CombinationOverlay.SetActive(false);
     }
 
     public void DisplayWinScreen()
@@ -145,6 +150,7 @@ public class UI : MonoBehaviour
         BackupCamera.SetActive(true);
         Player.SetActive(false);
         HelpOverlay.SetActive(false);
+        CombinationOverlay.SetActive(false);
 
         // show win screen
         WinScreen.SetActive(true);
@@ -164,5 +170,25 @@ public class UI : MonoBehaviour
     public void QuitGame()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void ShowCombinationOverlay()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        CombinationOverlay.SetActive(true);
+
+        // hiding other UI
+        Crosshair.SetActive(false);
+        HelpOverlay.SetActive(false);
+    }
+
+    public void HideCombinationOverlay()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        CombinationOverlay.SetActive(false);
+
+        // showing other UI
+        Crosshair.SetActive(true);
+        HelpOverlay.SetActive(true);
     }
 }
