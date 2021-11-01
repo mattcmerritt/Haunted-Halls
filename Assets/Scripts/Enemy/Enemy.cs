@@ -149,7 +149,6 @@ public class Enemy : MonoBehaviour
         
         if (distanceToPlayer.magnitude <= SoundDetectionRadius)
         {
-            Debug.Log("Chasing!");
             Chasing = true;
             ChaseTarget = soundLocation;
         }

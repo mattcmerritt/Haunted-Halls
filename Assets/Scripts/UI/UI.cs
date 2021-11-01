@@ -29,14 +29,24 @@ public class UI : MonoBehaviour
     // crosshair
     public GameObject Crosshair;
 
+    // player
+    public GameObject Player;
+
+    // cameras
+    public GameObject BackupCamera;
+
+    public bool Playing = true;
+
     public void Update()
     {
-        WarningHUD.SetActive(Detected);
-
-
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Playing)
         {
-            ToggleInventory();
+            WarningHUD.SetActive(Detected);
+
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                ToggleInventory();
+            }
         }
     }
 
@@ -85,6 +95,7 @@ public class UI : MonoBehaviour
 
     public void DisplayDeathScreen()
     {
+        Playing = false;
         // clear all old data
         PlayerLost();
         UpdateInventory(new Collectible[5]);
@@ -92,6 +103,8 @@ public class UI : MonoBehaviour
         Inventory.SetActive(false);
         GogglesOverlay.SetActive(false);
         Crosshair.SetActive(false);
+        BackupCamera.SetActive(true);
+        Player.SetActive(false);
 
         // show death screen
         DeathScreen.SetActive(true);
@@ -100,14 +113,18 @@ public class UI : MonoBehaviour
 
     public void ResetGame()
     {
+        Playing = true;
+        Player.SetActive(true);
+        BackupCamera.SetActive(false);
         ObjectManager.ResetAllObjects();
         DeathScreen.SetActive(false);
         WinScreen.SetActive(false);
-        Crosshair.SetActive(true);
+        Crosshair.SetActive(true); 
     }
 
     public void DisplayWinScreen()
     {
+        Playing = false;
         // clear all old data
         PlayerLost();
         UpdateInventory(new Collectible[5]);
@@ -115,6 +132,8 @@ public class UI : MonoBehaviour
         Inventory.SetActive(false);
         GogglesOverlay.SetActive(false);
         Crosshair.SetActive(false);
+        BackupCamera.SetActive(true);
+        Player.SetActive(false);
 
         // show win screen
         WinScreen.SetActive(true);
@@ -129,5 +148,10 @@ public class UI : MonoBehaviour
     public void HideGoggles()
     {
         GogglesOverlay.SetActive(false);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
