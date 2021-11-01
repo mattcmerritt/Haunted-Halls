@@ -44,5 +44,17 @@ public class SavedObject : MonoBehaviour
         {
             playerBehavior.Reset();
         }
+
+        NoteManager noteManager = gameObject.GetComponent<NoteManager>();
+        if (noteManager != null)
+        {
+            noteManager.Reset();
+        }
+
+        Safe safe = gameObject.GetComponent<Safe>();
+        if (safe != null)
+        {
+            safe.Reset();
+        }
     }
 }
