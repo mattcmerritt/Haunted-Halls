@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.15
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.13920936, g: 0.14266622, b: 0.1326803, a: 0.15}
+  m_IndirectSpecularColor: {r: 0.13920918, g: 0.14266613, b: 0.13268042, a: 0.15}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6655,7 +6655,23 @@ PrefabInstance:
       value: 1.4894232e-11
       objectReference: {fileID: 0}
     - target: {fileID: 7547098624238375905, guid: e9e3ed3499a89464cb1e20f083dfd30a, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7547098624238375905, guid: e9e3ed3499a89464cb1e20f083dfd30a, type: 3}
       propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 1567818261435876064, guid: 5517ea84aac78d14d96bbaf2553e6b92, type: 3}
+    - target: {fileID: 7547098624238375905, guid: e9e3ed3499a89464cb1e20f083dfd30a, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 5315215887763878781, guid: 5517ea84aac78d14d96bbaf2553e6b92, type: 3}
+    - target: {fileID: 7547098624238375905, guid: e9e3ed3499a89464cb1e20f083dfd30a, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: -8078617138743364992, guid: 5517ea84aac78d14d96bbaf2553e6b92, type: 3}
+    - target: {fileID: 7547098624238375905, guid: e9e3ed3499a89464cb1e20f083dfd30a, type: 3}
+      propertyPath: m_Materials.Array.data[3]
       value: 
       objectReference: {fileID: 2100000, guid: 3741074707aa8624ca650a05b35cbecc, type: 2}
     - target: {fileID: 7547098624238375907, guid: e9e3ed3499a89464cb1e20f083dfd30a, type: 3}
@@ -6669,7 +6685,7 @@ PrefabInstance:
     - target: {fileID: 7547098624238375910, guid: e9e3ed3499a89464cb1e20f083dfd30a, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4068373912626513877, guid: bf3cb3db432ab4a47847527ca4ef92be, type: 3}
+      objectReference: {fileID: 4068373912626513877, guid: 5517ea84aac78d14d96bbaf2553e6b92, type: 3}
     - target: {fileID: 7547098624238375911, guid: e9e3ed3499a89464cb1e20f083dfd30a, type: 3}
       propertyPath: m_RootOrder
       value: 11
