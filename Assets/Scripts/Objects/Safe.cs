@@ -15,6 +15,9 @@ public class Safe : MonoBehaviour, Interactable
     public MeshFilter SafeMesh;
     public Mesh Open, Closed;
 
+    public MeshCollider ClosedCollider;
+    public BoxCollider[] OpenColliders;
+
     private void Awake()
     {
         InitialPosition = transform.position;
@@ -48,13 +51,39 @@ public class Safe : MonoBehaviour, Interactable
         IsOpen = true;
         SafeMesh.mesh = Open;
         UI.HideCombinationOverlay();
+
+        // changing colliders
+        ClosedCollider.enabled = false;
+        foreach (BoxCollider box in OpenColliders)
+        {
+            box.enabled = true;
+        }
+
+        // changing tag to be interactable again
+        gameObject.tag = "Untagged";
+    }
+
+    public void Lock()
+    {
+        IsOpen = false;
+        SafeMesh.mesh = Closed;
+
+        // changing colliders
+        ClosedCollider.enabled = true;
+        foreach (BoxCollider box in OpenColliders)
+        {
+            box.enabled = false;
+        }
+
+        // changing tag to be interactable again
+        gameObject.tag = "Interactable";
     }
 
     public void Reset()
     {
         transform.position = InitialPosition;
         transform.rotation = InitialRotation;
-        IsOpen = false;
-        SafeMesh.mesh = Closed;
+
+        Lock();
     }
 }

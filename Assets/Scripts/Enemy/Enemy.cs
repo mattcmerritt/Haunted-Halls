@@ -25,11 +25,17 @@ public class Enemy : MonoBehaviour
     public bool Chasing;
     public Vector3 ChaseTarget;
 
+    // materials for goggles
+    public MeshRenderer MeshRenderer;
+    public Material NormalMaterial, GlowingMaterial;
+
     public void Awake()
     {
         UI = FindObjectOfType<UI>();
 
         SoundManager.OnSoundMade += HearSound;
+
+        NormalMaterial = MeshRenderer.material;
     }
 
     public void Update()
@@ -134,11 +140,13 @@ public class Enemy : MonoBehaviour
     public void EnableVisionCone()
     {
         VisionCone.SetActive(true);
+        MeshRenderer.material = GlowingMaterial;
     }
 
     public void DisableVisionCone()
     {
         VisionCone.SetActive(false);
+        MeshRenderer.material = NormalMaterial;
     }
 
     private void HearSound(object sender, SoundEventArgs e)

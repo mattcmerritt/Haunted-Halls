@@ -19,12 +19,19 @@ public class PlayerBehavior : MonoBehaviour
 
     public bool HasGoggles;
     public HelpOverlay HelpOverlay;
+    public Light PlayerLight;
+    public float LightIntensity, LightRange;
+    public float IncreasedIntensity, IncreasedRange;
+
+    public bool GogglesActive;
 
     private void Start()
     {
-        Inventory = new Collectible[5];
+        Inventory = new Collectible[6];
         UI = FindObjectOfType<UI>();
         Enemy = FindObjectOfType<Enemy>();
+        LightIntensity = PlayerLight.intensity;
+        LightRange = PlayerLight.range;
     }
 
     private void Update()
@@ -74,6 +81,12 @@ public class PlayerBehavior : MonoBehaviour
                         }
                     }
 
+                    // if null, no key needed
+                    if (interactable.GetKeyItem() == null)
+                    {
+                        hasKeyItem = true;
+                    }
+
                     if (hasKeyItem)
                     {
                         interactable.Interact();
@@ -83,7 +96,13 @@ public class PlayerBehavior : MonoBehaviour
         }
 
         // ghost vision goggles
-        if (Input.GetKey(KeyCode.Q) && HasGoggles)
+        if (Input.GetKeyDown(KeyCode.Q) && HasGoggles)
+        {
+            GogglesActive = !GogglesActive;
+        }
+
+        // to change back to hold, change to "Input.GetKey(KeyCode.Q) && HasGoggles"
+        if (GogglesActive && HasGoggles)
         {
             UI.DisplayGoggles();
             // if battery left, turn on the light
@@ -93,6 +112,10 @@ public class PlayerBehavior : MonoBehaviour
                 RemainingBattery -= BatteryUseRate * Time.deltaTime;
 
                 UI.UpdateBatteryLevel(RemainingBattery);
+
+                // increase vision
+                PlayerLight.range = IncreasedRange;
+                PlayerLight.intensity = IncreasedIntensity;
             }
             else
             {
@@ -125,12 +148,20 @@ public class PlayerBehavior : MonoBehaviour
                     RemainingBattery -= BatteryUseRate * Time.deltaTime;
 
                     UI.UpdateBatteryLevel(RemainingBattery);
+
+                    // increase vision
+                    PlayerLight.range = IncreasedRange;
+                    PlayerLight.intensity = IncreasedIntensity;
                 }
                 // light stays off
                 else
                 {
                     Enemy.DisableVisionCone();
                     UI.UpdateBatteryLevel(RemainingBattery);
+
+                    // decrease vision
+                    PlayerLight.range = LightRange;
+                    PlayerLight.intensity = LightIntensity;
                 }
             }
         }
@@ -139,6 +170,10 @@ public class PlayerBehavior : MonoBehaviour
             Enemy.DisableVisionCone();
             UI.UpdateBatteryLevel(RemainingBattery);
             UI.HideGoggles();
+
+            // decrease vision
+            PlayerLight.range = LightRange;
+            PlayerLight.intensity = LightIntensity;
         }
 
         // checking if the hints for interact should be displayed
@@ -167,7 +202,7 @@ public class PlayerBehavior : MonoBehaviour
     public void Reset()
     {
         RemainingBattery = 100;
-        Inventory = new Collectible[5];
+        Inventory = new Collectible[Inventory.Length];
         InventoryIndex = 0;
         HasGoggles = false;
     }
