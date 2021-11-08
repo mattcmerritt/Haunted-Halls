@@ -74,6 +74,12 @@ public class PlayerBehavior : MonoBehaviour
                         }
                     }
 
+                    // if null, no key needed
+                    if (interactable.GetKeyItem() == null)
+                    {
+                        hasKeyItem = true;
+                    }
+
                     if (hasKeyItem)
                     {
                         interactable.Interact();

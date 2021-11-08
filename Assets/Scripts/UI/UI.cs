@@ -32,6 +32,7 @@ public class UI : MonoBehaviour
 
     // player
     public GameObject Player;
+    public PlayerMovement PlayerMovement;
 
     // cameras
     public GameObject BackupCamera;
@@ -43,6 +44,11 @@ public class UI : MonoBehaviour
 
     // combination
     public GameObject CombinationOverlay;
+
+    private void Awake()
+    {
+        PlayerMovement = Player.GetComponent<PlayerMovement>();
+    }
 
     public void Update()
     {
@@ -177,6 +183,9 @@ public class UI : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         CombinationOverlay.SetActive(true);
 
+        // lock camera position
+        PlayerMovement.LockCamera();
+
         // hiding other UI
         Crosshair.SetActive(false);
         HelpOverlay.SetActive(false);
@@ -186,6 +195,9 @@ public class UI : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         CombinationOverlay.SetActive(false);
+
+        // unlock camera position
+        PlayerMovement.UnlockCamera();
 
         // showing other UI
         Crosshair.SetActive(true);

@@ -3748,7 +3748,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4704297744371795822
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4170,6 +4170,7 @@ MonoBehaviour:
   WinScreen: {fileID: 2368385045968889945}
   Crosshair: {fileID: 832353433821715349}
   Player: {fileID: 0}
+  PlayerMovement: {fileID: 0}
   BackupCamera: {fileID: 141805076599601017}
   Playing: 1
   HelpOverlay: {fileID: 4068669240033018371}
