@@ -22,7 +22,7 @@ public class PlayerBehavior : MonoBehaviour
 
     private void Start()
     {
-        Inventory = new Collectible[5];
+        Inventory = new Collectible[6];
         UI = FindObjectOfType<UI>();
         Enemy = FindObjectOfType<Enemy>();
     }
@@ -173,7 +173,7 @@ public class PlayerBehavior : MonoBehaviour
     public void Reset()
     {
         RemainingBattery = 100;
-        Inventory = new Collectible[5];
+        Inventory = new Collectible[Inventory.Length];
         InventoryIndex = 0;
         HasGoggles = false;
     }

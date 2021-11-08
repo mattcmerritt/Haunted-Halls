@@ -85,7 +85,7 @@ public class UI : MonoBehaviour
 
     public void UpdateInventory(Collectible[] items)
     {
-        if (items.Length != 5)
+        if (items.Length != Slots.Length)
         {
             Debug.LogError("Inventory Error: Not enough items passed to display in slots");
         }
@@ -115,7 +115,7 @@ public class UI : MonoBehaviour
         Playing = false;
         // clear all old data
         PlayerLost();
-        UpdateInventory(new Collectible[5]);
+        UpdateInventory(new Collectible[Slots.Length]);
         InventoryActive = false;
         Inventory.SetActive(false);
         GogglesOverlay.SetActive(false);
@@ -148,7 +148,7 @@ public class UI : MonoBehaviour
         Playing = false;
         // clear all old data
         PlayerLost();
-        UpdateInventory(new Collectible[5]);
+        UpdateInventory(new Collectible[Slots.Length]);
         InventoryActive = false;
         Inventory.SetActive(false);
         GogglesOverlay.SetActive(false);
