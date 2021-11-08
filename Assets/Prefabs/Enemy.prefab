@@ -345,6 +345,9 @@ MonoBehaviour:
   SoundDetectionRadius: 20
   Chasing: 0
   ChaseTarget: {x: 0, y: 0, z: 0}
+  MeshRenderer: {fileID: 6797723562207455246}
+  NormalMaterial: {fileID: 0}
+  GlowingMaterial: {fileID: 2100000, guid: 33821f65770f66c4aaf9d37256fd7459, type: 2}
 --- !u!114 &3826179801385749085
 MonoBehaviour:
   m_ObjectHideFlags: 0
