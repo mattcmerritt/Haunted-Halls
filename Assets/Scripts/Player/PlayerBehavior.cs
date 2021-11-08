@@ -23,6 +23,8 @@ public class PlayerBehavior : MonoBehaviour
     public float LightIntensity, LightRange;
     public float IncreasedIntensity, IncreasedRange;
 
+    public bool GogglesActive;
+
     private void Start()
     {
         Inventory = new Collectible[6];
@@ -94,7 +96,13 @@ public class PlayerBehavior : MonoBehaviour
         }
 
         // ghost vision goggles
-        if (Input.GetKey(KeyCode.Q) && HasGoggles)
+        if (Input.GetKeyDown(KeyCode.Q) && HasGoggles)
+        {
+            GogglesActive = !GogglesActive;
+        }
+
+        // to change back to hold, change to "Input.GetKey(KeyCode.Q) && HasGoggles"
+        if (GogglesActive && HasGoggles)
         {
             UI.DisplayGoggles();
             // if battery left, turn on the light
