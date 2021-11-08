@@ -19,12 +19,17 @@ public class PlayerBehavior : MonoBehaviour
 
     public bool HasGoggles;
     public HelpOverlay HelpOverlay;
+    public Light PlayerLight;
+    public float LightIntensity, LightRange;
+    public float IncreasedIntensity, IncreasedRange;
 
     private void Start()
     {
         Inventory = new Collectible[6];
         UI = FindObjectOfType<UI>();
         Enemy = FindObjectOfType<Enemy>();
+        LightIntensity = PlayerLight.intensity;
+        LightRange = PlayerLight.range;
     }
 
     private void Update()
@@ -99,6 +104,10 @@ public class PlayerBehavior : MonoBehaviour
                 RemainingBattery -= BatteryUseRate * Time.deltaTime;
 
                 UI.UpdateBatteryLevel(RemainingBattery);
+
+                // increase vision
+                PlayerLight.range = IncreasedRange;
+                PlayerLight.intensity = IncreasedIntensity;
             }
             else
             {
@@ -131,12 +140,20 @@ public class PlayerBehavior : MonoBehaviour
                     RemainingBattery -= BatteryUseRate * Time.deltaTime;
 
                     UI.UpdateBatteryLevel(RemainingBattery);
+
+                    // increase vision
+                    PlayerLight.range = IncreasedRange;
+                    PlayerLight.intensity = IncreasedIntensity;
                 }
                 // light stays off
                 else
                 {
                     Enemy.DisableVisionCone();
                     UI.UpdateBatteryLevel(RemainingBattery);
+
+                    // decrease vision
+                    PlayerLight.range = LightRange;
+                    PlayerLight.intensity = LightIntensity;
                 }
             }
         }
@@ -145,6 +162,10 @@ public class PlayerBehavior : MonoBehaviour
             Enemy.DisableVisionCone();
             UI.UpdateBatteryLevel(RemainingBattery);
             UI.HideGoggles();
+
+            // decrease vision
+            PlayerLight.range = LightRange;
+            PlayerLight.intensity = LightIntensity;
         }
 
         // checking if the hints for interact should be displayed

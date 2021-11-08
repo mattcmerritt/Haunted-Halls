@@ -310,12 +310,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 5
-  Sensitivity: 200
   Gravity: -9.8
   JumpSpeed: 3
   VerticalSpeed: 0
   CC: {fileID: 3238941316467123823}
   CameraTransform: {fileID: 3238941316203716882}
+  CameraLocked: 0
   OnGround: 0
   PlayerCollider: {fileID: 3238941316467123822}
   StartLocation: {x: 0, y: 0, z: 0}
@@ -353,6 +353,13 @@ MonoBehaviour:
   RemainingBattery: 100
   BatteryUseRate: 10
   GrabDistance: 5
+  HasGoggles: 0
+  HelpOverlay: {fileID: 0}
+  PlayerLight: {fileID: 4294718896439439932}
+  LightIntensity: 0
+  LightRange: 0
+  IncreasedIntensity: 5
+  IncreasedRange: 20
 --- !u!114 &6675715890877002264
 MonoBehaviour:
   m_ObjectHideFlags: 0
