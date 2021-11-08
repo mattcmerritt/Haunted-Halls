@@ -45,6 +45,10 @@ public class UI : MonoBehaviour
     // combination
     public GameObject CombinationOverlay;
 
+    // battery bar
+    public float MinAnchor, MaxAnchor;
+    public RectTransform BatteryBar;
+
     private void Awake()
     {
         PlayerMovement = Player.GetComponent<PlayerMovement>();
@@ -108,6 +112,8 @@ public class UI : MonoBehaviour
     public void UpdateBatteryLevel(float battery)
     {
         BatteryMeter.SetText("Remaining Battery: " + Mathf.RoundToInt(battery) + "%");
+
+        BatteryBar.anchorMax = new Vector2(MinAnchor + (MaxAnchor - MinAnchor) * battery/100f, BatteryBar.anchorMax.y);
     }
 
     public void DisplayDeathScreen()

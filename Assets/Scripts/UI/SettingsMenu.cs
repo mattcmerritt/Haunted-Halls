@@ -18,6 +18,15 @@ public class SettingsMenu : MonoBehaviour
     public Slider BrightnessSlider;
     public TMP_Text BrightnessLabel;
 
+    public void Start()
+    {
+        SensitivitySlider.value = PlayerMovement.Sensitivity;
+        SensitivityLabel.SetText("" + Mathf.Round(PlayerMovement.Sensitivity));
+
+        BrightnessSlider.value = Lighting.Brightness;
+        BrightnessLabel.SetText("" + Lighting.Brightness.ToString("0.##"));
+    }
+
     public void UpdateSensitivity()
     {
         PlayerMovement.Sensitivity = SensitivitySlider.value;
