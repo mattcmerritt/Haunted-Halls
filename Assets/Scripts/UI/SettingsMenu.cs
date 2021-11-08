@@ -23,8 +23,8 @@ public class SettingsMenu : MonoBehaviour
         SensitivitySlider.value = PlayerMovement.Sensitivity;
         SensitivityLabel.SetText("" + Mathf.Round(PlayerMovement.Sensitivity));
 
-        BrightnessSlider.value = Lighting.Brightness;
-        BrightnessLabel.SetText("" + Lighting.Brightness.ToString("0.##"));
+        BrightnessSlider.value = PostProcessLighting.Brightness;
+        BrightnessLabel.SetText("" + PostProcessLighting.Brightness.ToString("0.##"));
     }
 
     public void UpdateSensitivity()
@@ -35,8 +35,8 @@ public class SettingsMenu : MonoBehaviour
 
     public void UpdateBrightness()
     {
-        Lighting.Brightness = BrightnessSlider.value;
-        BrightnessLabel.SetText("" + Lighting.Brightness.ToString("0.##"));
+        PostProcessLighting.Brightness = BrightnessSlider.value;
+        BrightnessLabel.SetText("" + PostProcessLighting.Brightness.ToString("0.##"));
     }
 
     public void BackToMenu()
