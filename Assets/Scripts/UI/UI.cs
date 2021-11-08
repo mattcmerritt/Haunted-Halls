@@ -33,6 +33,7 @@ public class UI : MonoBehaviour
     // player
     public GameObject Player;
     public PlayerMovement PlayerMovement;
+    public PlayerBehavior PlayerBehavior;
 
     // cameras
     public GameObject BackupCamera;
@@ -52,6 +53,7 @@ public class UI : MonoBehaviour
     private void Awake()
     {
         PlayerMovement = Player.GetComponent<PlayerMovement>();
+        PlayerBehavior = Player.GetComponent<PlayerBehavior>();
     }
 
     public void Update()
@@ -118,6 +120,7 @@ public class UI : MonoBehaviour
 
     public void DisplayDeathScreen()
     {
+        PlayerBehavior.GogglesActive = false;
         Playing = false;
         // clear all old data
         PlayerLost();
@@ -151,6 +154,7 @@ public class UI : MonoBehaviour
 
     public void DisplayWinScreen()
     {
+        PlayerBehavior.GogglesActive = false;
         Playing = false;
         // clear all old data
         PlayerLost();
