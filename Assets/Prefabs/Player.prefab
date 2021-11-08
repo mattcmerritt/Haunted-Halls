@@ -192,6 +192,7 @@ GameObject:
   - component: {fileID: 3238941316467123820}
   - component: {fileID: 3238941316467123818}
   - component: {fileID: 6675715890877002264}
+  - component: {fileID: 270224594941787422}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -360,6 +361,7 @@ MonoBehaviour:
   LightRange: 0
   IncreasedIntensity: 5
   IncreasedRange: 20
+  GogglesActive: 0
 --- !u!114 &6675715890877002264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,6 +377,18 @@ MonoBehaviour:
   Position: {x: 0, y: 0, z: 0}
   Rotation: {x: 0, y: 0, z: 0, w: 0}
   Active: 0
+--- !u!114 &270224594941787422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3238941316467123821}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc6ba1c5e3fcf8a40b2418a6d13105fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6696991240225622129
 GameObject:
   m_ObjectHideFlags: 0
