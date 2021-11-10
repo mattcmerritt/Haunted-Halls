@@ -8,6 +8,9 @@ public class Door : MonoBehaviour, Interactable
 
     public bool Open;
 
+    public AudioClip DoorOpen, DoorClosed;
+    public AudioSource Source;
+
     // important for if the player dies, will be used to reset the level
     public Vector3 InitialPosition;
     public Quaternion InitialRotation;
@@ -29,11 +32,13 @@ public class Door : MonoBehaviour, Interactable
         {
             transform.Rotate(new Vector3(0, 90, 0));
             Open = true;
+            Source.PlayOneShot(DoorOpen);
         }
         else
         {
             transform.Rotate(new Vector3(0, -90, 0));
             Open = false;
+            Source.PlayOneShot(DoorClosed);
         }
     }
 
