@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class UI : MonoBehaviour
+public class NewUI : MonoBehaviour
 {
     // warning display data
     public GameObject WarningHUD;
@@ -76,24 +76,11 @@ public class UI : MonoBehaviour
     public void PlayerDetected()
     {
         Detected = true;
-        NewUI[] newUIs = FindObjectsOfType<NewUI>();
-
-        foreach (NewUI n in newUIs)
-        {
-            n.PlayerDetected();
-        }
     }
 
     public void PlayerLost()
     {
         Detected = false;
-
-        NewUI[] newUIs = FindObjectsOfType<NewUI>();
-
-        foreach (NewUI n in newUIs)
-        {
-            n.PlayerLost();
-        }
     }
 
     public void ToggleInventory()
@@ -128,7 +115,7 @@ public class UI : MonoBehaviour
     {
         BatteryMeter.SetText("Remaining Battery: " + Mathf.RoundToInt(battery) + "%");
 
-        BatteryBar.anchorMax = new Vector2(MinAnchor + (MaxAnchor - MinAnchor) * battery/100f, BatteryBar.anchorMax.y);
+        BatteryBar.anchorMax = new Vector2(MinAnchor + (MaxAnchor - MinAnchor) * battery / 100f, BatteryBar.anchorMax.y);
     }
 
     public void DisplayDeathScreen()
@@ -198,7 +185,8 @@ public class UI : MonoBehaviour
 
     public void QuitGame()
     {
-        SceneManager.LoadScene(0);
+        ResetGame();
+        FindObjectOfType<ActiveSceneManager>().SwitchScenes(0);
     }
 
     public void ShowCombinationOverlay()
