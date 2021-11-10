@@ -13204,6 +13204,10 @@ PrefabInstance:
       propertyPath: HelpOverlay
       value: 
       objectReference: {fileID: 629039852}
+    - target: {fileID: 3238941316467123818, guid: dc9d11a1babf64a4594e640b1999b38e, type: 3}
+      propertyPath: BatteryUseRate
+      value: 8.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3238941316467123819, guid: dc9d11a1babf64a4594e640b1999b38e, type: 3}
       propertyPath: m_RootOrder
       value: 10
